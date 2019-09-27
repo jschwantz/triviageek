@@ -1,0 +1,14 @@
+type User {
+  id: ID!
+  email: String!
+  username: String!
+  password: String!
+  salt: String!
+  googleId: String!
+  # games: [GamePlay] @connection(name: "UserPlays")
+}
+
+type Query {
+  users: [User!]!
+  user(id: ID!): User!
+}

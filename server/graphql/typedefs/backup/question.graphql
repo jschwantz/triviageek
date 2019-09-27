@@ -1,0 +1,7 @@
+type Questions {
+  id: ID!
+  external_id: Int!
+  question: String!
+  answer: String!
+  value: Int!
+}

@@ -1,5 +1,5 @@
 {
-  "name": "boilermaker",
+  "name": "triviageek",
   "version": "2.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "engines": {
@@ -41,12 +41,17 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "apollo-server": "^2.9.4",
+    "apollo-server-express": "^2.9.4",
     "axios": "^0.19.0",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-session": "^1.15.1",
+    "graphql": "^14.5.8",
     "history": "^4.9.0",
+    "merge-graphql-schemas": "^1.7.0",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",

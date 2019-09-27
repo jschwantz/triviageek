@@ -10,7 +10,35 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const CORS = require('cors')
+const {ApolloServer, gql} = require('apollo-server-express')
+const typeDefs = require('./graphql/typedef')
+const resolvers = require('./graphql/resolver')
 module.exports = app
+
+// const schema = gql`
+//   type Query {
+//     me: User
+//   }
+//   type User {
+//     username: String!
+//   }
+// `
+// const resolvers = {
+//   Query: {
+//     me: () => {
+//       return {
+//         username:  'Jared'
+//       }
+//     }
+//   }
+// }
+
+// const data = {
+//   me: {
+//     username: 'Jared'
+//   }
+// }
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
@@ -64,6 +92,7 @@ const createApp = () => {
   app.use(passport.session())
 
   // auth and api routes
+  app.use(CORS())
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 
@@ -93,6 +122,15 @@ const createApp = () => {
     res.status(err.status || 500).send(err.message || 'Internal server error.')
   })
 }
+
+const gQLServer = new ApolloServer({
+  typeDefs: gql`
+    ${typeDefs}
+  `,
+  resolvers
+})
+
+gQLServer.applyMiddleware({app, path: '/graphql'})
 
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)

@@ -1,0 +1,5 @@
+# type GamePlay @model(queries: null) {
+#   id: ID!
+#   user: User! @connection(name: "UserPlays")
+#   game: Game! @connection(name: "GamePlays")
+# }
