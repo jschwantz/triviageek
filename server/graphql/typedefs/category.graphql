@@ -1,9 +1,9 @@
 type Category {
   id: ID!
   title: String!
+  rounds: [Round]!
 }
-
-type Query {
-  categories(): [Category!]!
-  category(id: ID!): Category!
-}
+# type Query {
+#   categories(): [Category]!
+#   category(id: ID!): Category!
+# }

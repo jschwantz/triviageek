@@ -5,7 +5,6 @@ type User {
   password: String!
   salt: String!
   googleId: String!
-  # games: [GamePlay] @connection(name: "UserPlays")
 }
 
 type Query {

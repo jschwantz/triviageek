@@ -2,10 +2,8 @@ type Game {
   id: ID!
   roundCount: Int!
   difficulty: String
-  # rounds: [Round]!
-  # games: [GamePlay] @connection(name: "GamePlays")
+  rounds: [Round]!
 }
-
 type Query {
   games: [Game!]!
   game(id: ID!): Game!

@@ -1,17 +1,17 @@
-const categories = [
-  {
-    id: 1,
-    title: 'test'
-  }
-]
+// const cats = [
+//   {
+//     id: 1,
+//     title: 'test'
+//   }
+// ]
 
-module.exports = {
-  Query: {
-    categories() {
-      return categories
-    },
-    category(parent, args) {
-      return categories[0]
-    }
-  }
-}
+// module.exports = {
+//   Query: {
+//     categories() {
+//       return cats
+//     },
+//     category(parent, args) {
+//       return cats[0]
+//     }
+//   }
+// }
