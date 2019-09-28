@@ -1,11 +1,11 @@
 type Round {
   id: ID!
-  game: Game
+  game: Game!
   category: Category!
-  questions: [Questions]!
+  questions: [Question]!
 }
 
-# type Query {
-#   getrounds(): [Round]!
-#   getround(id: ID!): Round
-# }
+type Query {
+  rounds: [Round]!
+  round(id: ID!): Round
+}

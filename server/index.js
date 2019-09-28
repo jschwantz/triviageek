@@ -12,8 +12,10 @@ const app = express()
 const socketio = require('socket.io')
 const CORS = require('cors')
 const {ApolloServer, gql} = require('apollo-server-express')
+// should put these in an index file
 const typeDefs = require('./graphql/typedef')
 const resolvers = require('./graphql/resolver')
+const QuestionsAPI = require('./graphql/datasources/questions')
 module.exports = app
 
 // const schema = gql`
@@ -127,7 +129,10 @@ const gQLServer = new ApolloServer({
   typeDefs: gql`
     ${typeDefs}
   `,
-  resolvers
+  resolvers,
+  dataSources: () => ({
+    questionsAPI: new QuestionsAPI()
+  })
 })
 
 gQLServer.applyMiddleware({app, path: '/graphql'})

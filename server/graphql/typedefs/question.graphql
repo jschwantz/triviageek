@@ -1,8 +1,13 @@
-type Questions {
+type Question {
   id: ID!
   external_id: Int!
   question: String!
   answer: String!
   value: Int!
   round: Round!
+}
+
+type Query {
+  questions: [Question]!
+  question(id: ID!): Question
 }
