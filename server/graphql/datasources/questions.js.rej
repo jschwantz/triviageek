@@ -1,0 +1,6 @@
+diff a/server/graphql/datasources/questions.js b/server/graphql/datasources/questions.js	(rejected hunks)
+@@ -10 +10,3 @@ class QuestionsAPI extends RESTDataSource {
+-    return Array.isArray(response) ? response.map(question => this.questionReducer(question)) : []
++    return Array.isArray(response)
++      ? response.map(question => this.questionReducer(question))
++      : []
