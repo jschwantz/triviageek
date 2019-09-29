@@ -93,6 +93,7 @@ const QuestionsScreen = props => {
               answerInputHandler={answerInputHandler}
               enteredAnswer={enteredAnswer}
               addAnswerHandler={addAnswerHandler}
+              onCancel={props.onCancel}
             />
           </View>
         )}

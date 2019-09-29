@@ -26,11 +26,16 @@ export default function HomeScreen(props) {
     setGameCompleted(true)
   }
 
+  const cancelGameHandler = () => {
+    setIsPlaying(false)
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
+        keyboardShouldPersistTaps="always"
       >
         <View style={styles.welcomeContainer}>
           <Image
@@ -49,6 +54,7 @@ export default function HomeScreen(props) {
             <QuestionsScreen
               visible={isPlaying}
               returnHome={returnHomeHandler}
+              onCancel={cancelGameHandler}
             />
           ) : (
             <View />

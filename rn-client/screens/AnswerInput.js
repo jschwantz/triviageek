@@ -1,16 +1,18 @@
 import React from 'react'
-import {View, TextInput, StyleSheet, Button} from 'react-native'
+import {ScrollView, View, TextInput, StyleSheet, Button} from 'react-native'
 
 const AnswerInput = props => {
   const {answerInputHandler, enteredAnswer, addAnswerHandler} = props
   return (
     <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="Your Answer"
-        style={styles.input}
-        onChangeText={answerInputHandler}
-        value={enteredAnswer}
-      />
+      <ScrollView keyboardShouldPersistTaps="always">
+        <TextInput
+          placeholder="Your Answer"
+          style={styles.input}
+          onChangeText={answerInputHandler}
+          value={enteredAnswer}
+        />
+      </ScrollView>
       <View style={styles.buttons}>
         <View style={styles.button}>
           <Button title="Submit Answer" onPress={addAnswerHandler} />
