@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {
   View,
   Text,
@@ -6,11 +6,13 @@ import {
   Stylesheet,
   TouchableOpacity,
   ScrollView,
-  FlatList
+  FlatList,
+  Modal
 } from 'react-native'
 
-import {Query} from 'react-apollo'
+import {Query, withApollo} from 'react-apollo'
 import gql from 'graphql-tag'
+import {useQuery} from '@apollo/react-hooks'
 
 const QuestionsScreen = props => {
   const query = gql`
@@ -22,38 +24,36 @@ const QuestionsScreen = props => {
       }
     }
   `
+  const [gameData, setGameData] = useState([])
+  const [currentQuestion, setCurrentQuestion] = useState({})
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const {data} = await props.client.query({query})
+        if (data && data.questions) {
+          setGameData(data.questions)
+          setCurrentQuestion(data.questions[0])
+        }
+      } catch (error) {
+        console.error('error: ', error)
+      }
+    }
+    fetchData()
+  }, [])
+
+  if (gameData.length === 0) return <Text>Loading...</Text>
 
   return (
-    <ScrollView>
-      <Text>Some data hopefully</Text>
-      <Query query={query}>
-        {({data, error, loading}) => {
-          if (loading) return <Text>Loading..</Text>
-          if (error) {
-            console.log('Response Error------', error)
-            return <Text>{error.message}</Text>
-          }
-          if (data) {
-            return (
-              <FlatList
-                data={data.questions}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({item}) => {
-                  console.log(item)
-                  return (
-                    <View>
-                      <Text>{item.question}</Text>
-                      <Text>{item.answer}</Text>
-                    </View>
-                  )
-                }}
-              />
-            )
-          }
-        }}
-      </Query>
-    </ScrollView>
+    <Modal visible={props.visible} animationType="slide">
+      <ScrollView>
+        <View>
+          <Text>{currentQuestion.question}</Text>
+          <Text>{currentQuestion.answer}</Text>
+        </View>
+      </ScrollView>
+    </Modal>
   )
 }
 
-export default QuestionsScreen
+export default withApollo(QuestionsScreen)

@@ -1,5 +1,5 @@
 import * as WebBrowser from 'expo-web-browser'
-import React from 'react'
+import React, {useState} from 'react'
 import {
   Image,
   Platform,
@@ -7,13 +7,15 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  Button
 } from 'react-native'
 
 import {MonoText} from '../components/StyledText'
-// import QuestionsScreen from './QuestionsScreen'
+import QuestionsScreen from './QuestionsScreen'
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
+  const [isPlaying, setIsPlaying] = useState(false)
   return (
     <View style={styles.container}>
       <ScrollView
@@ -32,44 +34,10 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.getStartedContainer}>
-          <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
-          >
-            <MonoText>screens/HomeScreen.js</MonoText>
-          </View>
-
-          <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
-          </Text>
-          {/* <QuestionsScreen /> */}
-        </View>
-
-        <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>
-              Help, it didn’t automatically reload!
-            </Text>
-          </TouchableOpacity>
+          <Button title="Start New Game" onPress={() => setIsPlaying(true)} />
+          {isPlaying ? <QuestionsScreen visible={isPlaying} /> : <Text />}
         </View>
       </ScrollView>
-
-      <View style={styles.tabBarInfoContainer}>
-        <Text style={styles.tabBarInfoText}>
-          This is a tab bar. You can edit it in:
-        </Text>
-
-        <View
-          style={[styles.codeHighlightContainer, styles.navigationFilename]}
-        >
-          <MonoText style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
-          </MonoText>
-        </View>
-      </View>
     </View>
   )
 }

@@ -6,7 +6,7 @@ class QuestionsAPI extends RESTDataSource {
     this.baseURL = 'http://jservice.io/api/'
   }
   async getQuestions() {
-    const response = await this.get('random', {count: 5})
+    const response = await this.get('random', {count: 8})
     return Array.isArray(response)
       ? response.map(question => this.questionReducer(question))
       : []
@@ -18,6 +18,7 @@ class QuestionsAPI extends RESTDataSource {
       question: question.question,
       answer: question.answer,
       value: question.value,
+      category: question.category.title,
       round: 1
     }
   }

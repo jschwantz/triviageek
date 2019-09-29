@@ -3,8 +3,9 @@ type Question {
   external_id: Int!
   question: String!
   answer: String!
-  value: Int!
+  value: Int
   round: Round!
+  category: Category!
 }
 
 type Query {

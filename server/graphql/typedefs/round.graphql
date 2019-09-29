@@ -1,7 +1,7 @@
 type Round {
   id: ID!
   game: Game!
-  category: Category!
+  # category: Category!
   questions: [Question]!
 }
 

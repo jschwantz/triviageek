@@ -6,10 +6,10 @@ const rounds = [
       roundCount: 5,
       difficulty: 'Default'
     },
-    category: {
-      id: 1,
-      title: 'test'
-    },
+    // category: {
+    //   id: 1,
+    //   title: 'test'
+    // },
     questions: []
   }
 ]
