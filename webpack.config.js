@@ -15,13 +15,13 @@ module.exports = {
   },
   devtool: 'source-map',
   watchOptions: {
-    ignored: /node_modules/
+    ignored: [/node_modules/, /rn-client/]
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /rn-client/],
         loader: 'babel-loader'
       }
     ]

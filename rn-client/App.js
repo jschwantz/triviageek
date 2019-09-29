@@ -2,13 +2,19 @@ import {AppLoading} from 'expo'
 import {Asset} from 'expo-asset'
 import * as Font from 'expo-font'
 import React, {useState} from 'react'
-import {Platform, StatusBar, StyleSheet, View} from 'react-native'
+import {Platform, StatusBar, StyleSheet, View, AppRegistry} from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
 
 import AppNavigator from './navigation/AppNavigator'
+import ApolloClient from 'apollo-boost'
+import {ApolloProvider} from 'react-apollo'
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false)
+
+  const client = new ApolloClient({
+    uri: 'http://10.0.2.2:8080/graphql'
+  })
 
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
@@ -20,13 +26,17 @@ export default function App(props) {
     )
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+      <ApolloProvider client={client}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </ApolloProvider>
     )
   }
 }
+
+AppRegistry.registerComponent('MyApplication', () => App)
 
 async function loadResourcesAsync() {
   await Promise.all([

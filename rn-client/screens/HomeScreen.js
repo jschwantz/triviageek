@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 
 import {MonoText} from '../components/StyledText'
+// import QuestionsScreen from './QuestionsScreen'
 
 export default function HomeScreen() {
   return (
@@ -44,6 +45,7 @@ export default function HomeScreen() {
           <Text style={styles.getStartedText}>
             Change this text and your app will automatically reload.
           </Text>
+          {/* <QuestionsScreen /> */}
         </View>
 
         <View style={styles.helpContainer}>
