@@ -4,15 +4,16 @@ import {ScrollView, View, TextInput, StyleSheet, Button} from 'react-native'
 const AnswerInput = props => {
   const {answerInputHandler, enteredAnswer, addAnswerHandler} = props
   return (
-    <View style={styles.inputContainer}>
-      <ScrollView keyboardShouldPersistTaps="always">
-        <TextInput
-          placeholder="Your Answer"
-          style={styles.input}
-          onChangeText={answerInputHandler}
-          value={enteredAnswer}
-        />
-      </ScrollView>
+    <ScrollView
+      keyboardShouldPersistTaps="always"
+      contentContainerStyle={styles.inputContainer}
+    >
+      <TextInput
+        placeholder="Your Answer"
+        style={styles.input}
+        onChangeText={answerInputHandler}
+        value={enteredAnswer}
+      />
       <View style={styles.buttons}>
         <View style={styles.button}>
           <Button title="Submit Answer" onPress={addAnswerHandler} />
@@ -21,7 +22,7 @@ const AnswerInput = props => {
           <Button title="Cancel" color="red" onPress={props.onCancel} />
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 

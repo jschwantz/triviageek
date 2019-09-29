@@ -20,6 +20,11 @@ export default function HomeScreen(props) {
   const [gameCompleted, setGameCompleted] = useState(false)
   const [answerData, setAnswerData] = useState([])
 
+  const startGameHandler = () => {
+    setIsPlaying(true)
+    setGameCompleted(false)
+  }
+
   const returnHomeHandler = answers => {
     setAnswerData(answers)
     setIsPlaying(false)
@@ -49,7 +54,7 @@ export default function HomeScreen(props) {
         </View>
 
         <View style={styles.getStartedContainer}>
-          <Button title="Start New Game" onPress={() => setIsPlaying(true)} />
+          <Button title="Start New Game" onPress={startGameHandler} />
           {isPlaying ? (
             <QuestionsScreen
               visible={isPlaying}

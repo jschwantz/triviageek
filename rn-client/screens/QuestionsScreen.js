@@ -46,7 +46,18 @@ const QuestionsScreen = props => {
     const copyGameData = gameData.map((question, index) => {
       if (index === currIdx) {
         let correct = false
-        if (question.answer.toLowerCase() === enteredAnswer.toLowerCase())
+        if (
+          question.answer
+            .toLowerCase()
+            .split(' ')
+            .filter(word => word !== 'a' && word !== 'the')
+            .join(' ') ===
+          enteredAnswer
+            .toLowerCase()
+            .split(' ')
+            .filter(word => word !== 'a' && word !== 'the')
+            .join(' ')
+        )
           correct = true
         return {...question, enteredAnswer, correct}
       } else return {...question}
