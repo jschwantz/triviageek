@@ -1,8 +1,8 @@
 import React from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 
 const SingleQuestion = props => {
-  const {gameData, currIdx} = props.gameData
+  const {gameData, currIdx} = props
   return (
     <View>
       <View style={styles.contentContainer}>
@@ -17,5 +17,11 @@ const SingleQuestion = props => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    paddingTop: 30
+  }
+})
 
 export default SingleQuestion

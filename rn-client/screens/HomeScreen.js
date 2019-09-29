@@ -13,9 +13,19 @@ import {
 
 import {MonoText} from '../components/StyledText'
 import QuestionsScreen from './QuestionsScreen'
+import AnswersList from './AnswersScreen'
 
 export default function HomeScreen(props) {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [gameCompleted, setGameCompleted] = useState(false)
+  const [answerData, setAnswerData] = useState([])
+
+  const returnHomeHandler = answers => {
+    setAnswerData(answers)
+    setIsPlaying(false)
+    setGameCompleted(true)
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -35,7 +45,19 @@ export default function HomeScreen(props) {
 
         <View style={styles.getStartedContainer}>
           <Button title="Start New Game" onPress={() => setIsPlaying(true)} />
-          {isPlaying ? <QuestionsScreen visible={isPlaying} /> : <Text />}
+          {isPlaying ? (
+            <QuestionsScreen
+              visible={isPlaying}
+              returnHome={returnHomeHandler}
+            />
+          ) : (
+            <View />
+          )}
+          {!isPlaying && gameCompleted ? (
+            <AnswersList gameData={answerData} />
+          ) : (
+            <View />
+          )}
         </View>
       </ScrollView>
     </View>
