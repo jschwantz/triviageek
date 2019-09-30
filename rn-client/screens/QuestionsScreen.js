@@ -1,19 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  FlatList,
-  Button,
-  Modal
-} from 'react-native'
+import {View, Text, StyleSheet, Modal} from 'react-native'
 
-import {Query, withApollo} from 'react-apollo'
+import {withApollo} from 'react-apollo'
 import gql from 'graphql-tag'
-import {useQuery} from '@apollo/react-hooks'
 import AnswersList from './AnswersScreen'
 import SingleQuestion from './SingleQuestion'
 import AnswerInput from './AnswerInput'
@@ -33,7 +22,6 @@ const QuestionsScreen = props => {
   `
   const [gameData, setGameData] = useState([])
   const [currIdx, setCurrIdx] = useState(0)
-  // const [currentQuestion, setCurrentQuestion] = useState({})
   const [enteredAnswer, setEnteredAnswer] = useState('')
   const [isRoundFinished, setRoundFinished] = useState(false)
   const {returnHome} = props
@@ -50,12 +38,12 @@ const QuestionsScreen = props => {
           question.answer
             .toLowerCase()
             .split(' ')
-            .filter(word => word !== 'a' && word !== 'the')
+            .filter(word => word !== 'a' && word !== 'the' && word !== 'an')
             .join(' ') ===
           enteredAnswer
             .toLowerCase()
             .split(' ')
-            .filter(word => word !== 'a' && word !== 'the')
+            .filter(word => word !== 'a' && word !== 'the' && word !== 'an')
             .join(' ')
         )
           correct = true
@@ -82,7 +70,6 @@ const QuestionsScreen = props => {
         })
         if (data && data.questions) {
           setGameData(data.questions)
-          // setCurrentQuestion(data.questions[0])
         }
       } catch (error) {
         console.error('error: ', error)
