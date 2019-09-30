@@ -31,17 +31,24 @@ const QuestionsScreen = props => {
   }
 
   const addAnswerHandler = () => {
+    if (enteredAnswer.length === 0) return
     const copyGameData = gameData.map((question, index) => {
       if (index === currIdx) {
         let correct = false
         if (
           question.answer
             .toLowerCase()
+            .replace('<i>', '')
+            .replace('</i>', '')
+            .replace(/[^a-zA-Z0-9 ]/g, '')
             .split(' ')
             .filter(word => word !== 'a' && word !== 'the' && word !== 'an')
             .join(' ') ===
           enteredAnswer
             .toLowerCase()
+            .replace('<i>', '')
+            .replace('</i>', '')
+            .replace(/[^a-zA-Z0-9 ]/g, '')
             .split(' ')
             .filter(word => word !== 'a' && word !== 'the' && word !== 'an')
             .join(' ')
@@ -70,6 +77,11 @@ const QuestionsScreen = props => {
         })
         if (data && data.questions) {
           setGameData(data.questions)
+          // data.questions.forEach(question => {
+          //   console.log('question', question.question)
+          //   console.log('answer', question.answer)
+          // })
+          // console.log('questions', data.questions)
         }
       } catch (error) {
         console.error('error: ', error)

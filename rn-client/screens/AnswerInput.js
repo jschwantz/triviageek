@@ -16,10 +16,10 @@ const AnswerInput = props => {
       />
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <Button title="Submit Answer" onPress={addAnswerHandler} />
+          <Button title="Submit" onPress={addAnswerHandler} />
         </View>
         <View style={styles.button}>
-          <Button title="Cancel" color="red" onPress={props.onCancel} />
+          <Button title="Quit" color="red" onPress={props.onCancel} />
         </View>
       </View>
     </ScrollView>

@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   questionText: {
-    fontSize: 18,
+    fontSize: 22,
     padding: 15,
     textAlign: 'center'
   }
