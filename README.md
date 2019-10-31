@@ -29,9 +29,9 @@ This will open a browser window from Expo, that will allow you to open the app i
 
 ## Technologies Used
 
-Apollo Server
-Apollo Client
-React Native
-PostgreSQL
-Sequelize
-jservice.io
+..*Apollo Server
+..*Apollo Client
+..*React Native
+..*PostgreSQL
+..*Sequelize
+..*jservice.io
