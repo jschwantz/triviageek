@@ -34,4 +34,6 @@ This will open a browser window from Expo, that will allow you to open the app i
   * React Native
   * PostgreSQL
   * Sequelize
+  * Node
+  * Express
   * jservice.io
